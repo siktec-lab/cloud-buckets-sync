@@ -1,0 +1,29 @@
+{
+  "app_name": "S3 Sync Test Application",
+  "version": "1.2.3",
+  "debug": true,
+  "database_url": "sqlite:///test_app.db",
+  "api_endpoints": {
+    "base_url": "https://api.example.com",
+    "timeout": 30,
+    "retry_attempts": 3
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file": "app.log"
+  },
+  "sync_settings": {
+    "interval_seconds": 300,
+    "batch_size": 100,
+    "max_file_size_mb": 50
+  },
+  "test_data": {
+    "generate_mock_files": true,
+    "file_count": 25,
+    "size_range": {
+      "min_bytes": 100,
+      "max_bytes": 1048576
+    }
+  }
+}

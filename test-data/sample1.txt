@@ -1,0 +1,4 @@
+This is a sample text file for testing the S3 sync service.
+It contains multiple lines of text to simulate real file content.
+File size: Small
+Type: Text document

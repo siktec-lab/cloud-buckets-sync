@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy mock API code
+COPY mock_api/ ./mock_api/
+
+# Create storage directory
+RUN mkdir -p /tmp/mock_api_storage
+
+# Expose port
+EXPOSE 8001
+
+# Run the mock API server
+CMD ["python", "-m", "mock_api.run_server"]

@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+  # Main sync service with live reload
+  sync-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: s3-sync-service
+    volumes:
+      - ./sync_service:/app/sync_service
+      - ./tests:/app/tests
+      - ./data:/app/data
+      - ./requirements.txt:/app/requirements.txt
+    environment:
+      - CUSTOMER_S3_ENDPOINT=http://minio-customer:9000
+      - CUSTOMER_S3_ACCESS_KEY=minioadmin
+      - CUSTOMER_S3_SECRET_KEY=minioadmin
+      - CUSTOMER_S3_BUCKET=customer-bucket
+      - TARGET_S3_ENDPOINT=http://minio-target:9000
+      - TARGET_S3_ACCESS_KEY=minioadmin
+      - TARGET_S3_SECRET_KEY=minioadmin
+      - TARGET_S3_BUCKET=target-bucket
+      - MOCK_API_URL=http://mock-api:8001
+      - SYNC_INTERVAL=300
+      - DATABASE_PATH=/app/data/sync.db
+      - LIVE_RELOAD=true
+      - PYTHONPATH=/app
+    depends_on:
+      - minio-customer
+      - minio-target
+      - mock-api
+    networks:
+      - sync-network
+    restart: unless-stopped
+
+  # Customer S3 service (MinIO)
+  minio-customer:
+    image: minio/minio:latest
+    container_name: minio-customer
+    ports:
+      - "9001:9000"
+      - "9011:9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    volumes:
+      - minio-customer-data:/data
+      - ./test-data:/test-data
+    command: server /data --console-address ":9001"
+    networks:
+      - sync-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # Target S3 service (MinIO)
+  minio-target:
+    image: minio/minio:latest
+    container_name: minio-target
+    ports:
+      - "9002:9000"
+      - "9012:9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    volumes:
+      - minio-target-data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - sync-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # Mock API server
+  mock-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.mock-api
+    container_name: mock-api-server
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./mock_api:/app/mock_api
+      - ./data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    networks:
+      - sync-network
+    restart: unless-stopped
+
+  # MinIO client for bucket initialization
+  minio-init:
+    image: minio/mc:latest
+    container_name: minio-init
+    depends_on:
+      - minio-customer
+      - minio-target
+    volumes:
+      - ./test-data:/test-data
+      - ./scripts:/scripts
+    networks:
+      - sync-network
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      mc alias set customer http://minio-customer:9000 minioadmin minioadmin;
+      mc alias set target http://minio-target:9000 minioadmin minioadmin;
+      mc mb customer/customer-bucket --ignore-existing;
+      mc mb target/target-bucket --ignore-existing;
+      if [ -d /test-data ]; then
+        mc cp --recursive /test-data/ customer/customer-bucket/;
+      fi;
+      echo 'MinIO initialization complete';
+      "
+
+volumes:
+  minio-customer-data:
+  minio-target-data:
+
+networks:
+  sync-network:
+    driver: bridge

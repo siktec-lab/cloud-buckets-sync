@@ -1,0 +1,199 @@
+{
+  "events": [
+    {
+      "event_type": "create",
+      "file_path": "/documents/new_contract.pdf",
+      "new_path": null,
+      "metadata": {
+        "size": 245760,
+        "mime_type": "application/pdf",
+        "created_by": "user123",
+        "permissions": "rw-r--r--",
+        "owner": "content",
+        "group": "legal"
+      },
+      "timestamp": "2024-01-15T10:30:15.123Z"
+    },
+    {
+      "event_type": "change_permission",
+      "file_path": "/documents/report.pdf",
+      "new_path": null,
+      "metadata": {
+        "old_permissions": "rw-r--r--",
+        "new_permissions": "rwxr-xr-x",
+        "changed_by": "admin",
+        "change_reason": "security_update"
+      },
+      "timestamp": "2024-01-15T10:45:22.456Z"
+    },
+    {
+      "event_type": "delete",
+      "file_path": "/temp/cache.tmp",
+      "new_path": null,
+      "metadata": {
+        "deleted_by": "system",
+        "deletion_reason": "cleanup",
+        "original_size": 1024
+      },
+      "timestamp": "2024-01-15T11:00:33.789Z"
+    },
+    {
+      "event_type": "rename",
+      "file_path": "/documents/old_name.txt",
+      "new_path": "/documents/new_name.txt",
+      "metadata": {
+        "renamed_by": "user456",
+        "rename_reason": "standardization",
+        "size": 2048
+      },
+      "timestamp": "2024-01-15T11:15:44.012Z"
+    },
+    {
+      "event_type": "move",
+      "file_path": "/uploads/document.docx",
+      "new_path": "/processed/document.docx",
+      "metadata": {
+        "moved_by": "workflow_engine",
+        "move_reason": "processing_complete",
+        "size": 87654,
+        "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "timestamp": "2024-01-15T11:30:55.345Z"
+    },
+    {
+      "event_type": "create",
+      "file_path": "/images/screenshot.png",
+      "new_path": null,
+      "metadata": {
+        "size": 156789,
+        "mime_type": "image/png",
+        "created_by": "user789",
+        "dimensions": "1920x1080",
+        "color_depth": 24
+      },
+      "timestamp": "2024-01-15T12:00:11.678Z"
+    },
+    {
+      "event_type": "change_permission",
+      "file_path": "/code/deploy.sh",
+      "new_path": null,
+      "metadata": {
+        "old_permissions": "rw-r--r--",
+        "new_permissions": "rwxrwxr-x",
+        "changed_by": "devops",
+        "change_reason": "deployment_script"
+      },
+      "timestamp": "2024-01-15T12:15:22.901Z"
+    },
+    {
+      "event_type": "create",
+      "file_path": "/logs/sync_2024-01-15.log",
+      "new_path": null,
+      "metadata": {
+        "size": 4096,
+        "mime_type": "text/plain",
+        "created_by": "sync_service",
+        "log_level": "INFO",
+        "rotation": "daily"
+      },
+      "timestamp": "2024-01-15T12:30:33.234Z"
+    },
+    {
+      "event_type": "delete",
+      "file_path": "/temp/processing_lock",
+      "new_path": null,
+      "metadata": {
+        "deleted_by": "cleanup_service",
+        "deletion_reason": "lock_expired",
+        "original_size": 0,
+        "lock_duration_seconds": 3600
+      },
+      "timestamp": "2024-01-15T12:45:44.567Z"
+    },
+    {
+      "event_type": "move",
+      "file_path": "/incoming/data.csv",
+      "new_path": "/archive/2024/01/data.csv",
+      "metadata": {
+        "moved_by": "archival_service",
+        "move_reason": "monthly_archive",
+        "size": 98765,
+        "mime_type": "text/csv",
+        "record_count": 1000
+      },
+      "timestamp": "2024-01-15T13:00:55.890Z"
+    },
+    {
+      "event_type": "create",
+      "file_path": "/config/feature_flags.json",
+      "new_path": null,
+      "metadata": {
+        "size": 512,
+        "mime_type": "application/json",
+        "created_by": "config_manager",
+        "environment": "production",
+        "version": "1.2.3"
+      },
+      "timestamp": "2024-01-15T13:15:11.123Z"
+    },
+    {
+      "event_type": "rename",
+      "file_path": "/documents/draft_proposal.docx",
+      "new_path": "/documents/final_proposal.docx",
+      "metadata": {
+        "renamed_by": "user101",
+        "rename_reason": "finalization",
+        "size": 234567,
+        "version": "final"
+      },
+      "timestamp": "2024-01-15T13:30:22.456Z"
+    },
+    {
+      "event_type": "change_permission",
+      "file_path": "/sensitive/confidential.pdf",
+      "new_path": null,
+      "metadata": {
+        "old_permissions": "rw-rw-r--",
+        "new_permissions": "rw-------",
+        "changed_by": "security_admin",
+        "change_reason": "confidentiality_upgrade",
+        "classification": "restricted"
+      },
+      "timestamp": "2024-01-15T13:45:33.789Z"
+    },
+    {
+      "event_type": "delete",
+      "file_path": "/backups/old_backup_2023.tar.gz",
+      "new_path": null,
+      "metadata": {
+        "deleted_by": "backup_manager",
+        "deletion_reason": "retention_policy",
+        "original_size": 1073741824,
+        "backup_date": "2023-12-31"
+      },
+      "timestamp": "2024-01-15T14:00:44.012Z"
+    },
+    {
+      "event_type": "create",
+      "file_path": "/reports/monthly_summary.xlsx",
+      "new_path": null,
+      "metadata": {
+        "size": 345678,
+        "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "created_by": "reporting_service",
+        "report_period": "2024-01",
+        "sheet_count": 5
+      },
+      "timestamp": "2024-01-15T14:15:55.345Z"
+    }
+  ],
+  "total_count": 15,
+  "generated_at": "2024-01-15T14:30:00.000Z",
+  "test_metadata": {
+    "scenario": "comprehensive_event_testing",
+    "event_types_covered": ["create", "delete", "rename", "move", "change_permission"],
+    "file_types_covered": ["pdf", "txt", "png", "docx", "csv", "json", "log", "xlsx", "sh", "tar.gz"],
+    "time_span_hours": 4,
+    "notes": "Events span 4 hours with realistic timing and metadata for comprehensive sync testing"
+  }
+}

@@ -1,0 +1,11 @@
+id,name,email,department,salary,hire_date
+1,John Doe,john.doe@company.com,Engineering,75000,2023-01-15
+2,Jane Smith,jane.smith@company.com,Marketing,65000,2023-02-20
+3,Bob Johnson,bob.johnson@company.com,Sales,70000,2023-03-10
+4,Alice Brown,alice.brown@company.com,Engineering,80000,2023-04-05
+5,Charlie Wilson,charlie.wilson@company.com,HR,60000,2023-05-12
+6,Diana Davis,diana.davis@company.com,Finance,72000,2023-06-18
+7,Edward Miller,edward.miller@company.com,Engineering,78000,2023-07-22
+8,Fiona Garcia,fiona.garcia@company.com,Marketing,67000,2023-08-30
+9,George Martinez,george.martinez@company.com,Sales,69000,2023-09-14
+10,Helen Rodriguez,helen.rodriguez@company.com,Engineering,82000,2023-10-08
